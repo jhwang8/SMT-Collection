@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Internal JavaScript Example</title>
+</head>
+
+<body>
+<table id="myTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Class</th>
+      <th>Physical</th>
+      <th>Fire</th>
+      <th>Ice</th>
+      <th>Electricity</th>
+      <th>Wind</th>
+      <th>Mystic</th>
+    </tr>
+  </thead>
+  <tbody>
+     <div id="addForm">
+    <input type="text" id="newName" placeholder="Name">
+    <input type="text" id="newRace" placeholder="Race">
+    <input type="text" id="newPhysical" placeholder="Physical">
+    <input type="text" id="newFire" placeholder="Fire">
+    <input type="text" id="newIce" placeholder="Ice">
+    <input type="text" id="newElectricity" placeholder="Electricity">
+    <input type="text" id="newWind" placeholder="Wind">
+    <input type="text" id="newMystic" placeholder="Mystic">
+    <button onclick="addRow()">Add Row</button>
+    </div>
+    <div id="deleteForm">
+      <input type="number" id="deleteIndex" placeholder="Enter index to delete">
+      <button onclick="deleteRow()">delete row</button>
+    </div>
+    <script>
+        const tableData = [
+            { Name: 'Amaterasu', Race: 'Divine', Physical: 'Neutral', Fire: 'Drain', Ice: 'Weak', Electricity: 'Null', Wind: 'Resist',  Mystic: 'Repel',},
+            { Name: 'Amaterasu', Race: 'Divine', Physical: 'Neutral', Fire: 'Drain', Ice: 'Weak', Electricity: 'Null', Wind: 'Resist',  Mystic: 'Repel',},
+        ];
+
+        async function fetchData() {
+        const response = await fetch('/api/demons/');
+        const tableData = await response.json();
+        
+        renderTable(tableData);
+    }
+        const tableBody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            tableData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${row.Name}</td><td>${row.Race}</td><td>${row.Physical}</td><td>${row.Fire}</td><td>${row.Ice}</td>
+                <td>${row.Electricity}</td><td>${row.Wind}</td><td>${row.Mystic}</td>`;
+                tableBody.appendChild(tr);
+            });
+        }
+        
+        renderTable();
+
+        function deleteRow(index) {
+            const indexToDelete = parseInt(document.getElementById('deleteIndex').value);
+
+            tableData.splice(indexToDelete + 1, 1); 
+            renderTable(); 
+        }
+
+
+        function addRow() {
+            const newName = document.getElementById('newName').value;
+            const newRace = document.getElementById('newRace').value;
+            const newPhysical = document.getElementById('newPhysical').value;
+            const newFire = document.getElementById('newFire').value;
+            const newIce = document.getElementById('newIce').value;
+            const newElectricity = document.getElementById('newElectricity').value;
+            const newWind = document.getElementById('newWind').value;
+            const newMystic = document.getElementById('newMystic').value;
+
+            const newRow = {
+                Name: newName,
+                Race: newRace,
+                Physical: newPhysical,
+                Fire: newFire,
+                Ice: newIce,
+                Electricity: newElectricity,
+                Wind: newWind,
+                Mystic: newMystic,
+            };
+
+            tableData.push(newRow);
+
+            renderTable(); 
+        }
+    </script>
+  </tbody>
+</table>
+</body>
+
+</html>
