@@ -5,10 +5,58 @@
     <title>SMT Collection Database</title>
 </head>
 
+<div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p>
+</div>
 
+<style>
+#DemonTable {
+  border: 1px solid;
+}
+
+body {
+    background-color: #ffffff; 
+    color: black;
+}
+
+.btn-custom {
+    background-color: rgb(236, 235, 235); 
+    color: rgb(54, 54, 54); 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+.btn2 {
+    display: flex;         
+    justify-content: center; 
+    align-items: center;    
+    border: none;        
+    outline: none;             
+    width: 40px;               
+    height: 25px; 
+}
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Column 1</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 2</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
+</div>
 <body>
-<table id="myTable">
-  <thead>
+<table id="DemonTable">
+  <thead class="table-light">
     <tr>
       <th>Name</th>
       <th>Class</th>
@@ -30,7 +78,7 @@
     <input type="text" id="newElectricity" placeholder="Electricity">
     <input type="text" id="newWind" placeholder="Wind">
     <input type="text" id="newMystic" placeholder="Mystic">
-    <button onclick="addRow()">Add Row</button>
+    <button onclick="addRow()", class = 'btn2'>Add Row</button>
     </div>
     <div id="deleteForm">
       <input type="number" id="deleteIndex" placeholder="Enter index to delete">
@@ -48,7 +96,7 @@
         
         renderTable(tableData);
     }
-        const tableBody = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+        const tableBody = document.getElementById('DemonTable').getElementsByTagName('tbody')[0];
 
         function renderTable() {
             tableBody.innerHTML = '';
